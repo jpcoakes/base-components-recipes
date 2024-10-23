@@ -1,0 +1,27 @@
+<template>
+  <div class="slds-form-element__control">
+    <template for:each={items} for:item="item">
+      <div
+        key={item.key}
+        class="slds-visual-picker slds-visual-picker_vertical"
+      >
+        <input
+          type="radio"
+          id={item.key}
+          value={item.key}
+          name="example-unique-name-35"
+          disabled={disabled}
+        />
+        <label for={item.key}>
+          <span>
+            <lwc:component
+              class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center"
+              lwc:is={selectionComp}
+              lwc:spread={params}
+            ></lwc:component>
+          </span>
+        </label>
+      </div>
+    </template>
+  </div>
+</template>

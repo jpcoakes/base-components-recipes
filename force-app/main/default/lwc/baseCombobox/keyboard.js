@@ -109,6 +109,8 @@ function handleEscapeOrTabKey({ event, dropdownInterface }) {
 
 function handleTypedCharacters({ event, currentIndex, dropdownInterface }) {
     if (event.key && event.key.length > 1) {
+        console.log("first if in handleTypedCharacters");
+        
         return;
     }
     if (!dropdownInterface.isDropdownVisible()) {
@@ -116,7 +118,8 @@ function handleTypedCharacters({ event, currentIndex, dropdownInterface }) {
     }
     if (dropdownInterface.isInputReadOnly()) {
         event.preventDefault();
-
+        console.log("dropDownInterface.isInputReadOnly");
+        
         // eslint-disable-next-line @lwc/lwc/no-async-operation
         requestAnimationFrame(() =>
             runActionOnBufferedTypedCharacters(

@@ -212,14 +212,17 @@ export default class cBaseCombobox extends LightningElement {
     }
 
     @api get variant() {
+        
         return this._variant || VARIANT.STANDARD;
     }
 
     set variant(value) {
+        
         this._variant = normalizeString(value, {
             fallbackValue: VARIANT.STANDARD,
             validValues: [VARIANT.STANDARD, 'lookup']
         });
+        
     }
 
     @api get items() {
@@ -310,6 +313,8 @@ export default class cBaseCombobox extends LightningElement {
     }
 
     processItem(item) {
+        console.log(item);
+        
         const itemCopy = {};
 
         itemCopy.type = item.type;
@@ -342,6 +347,8 @@ export default class cBaseCombobox extends LightningElement {
     }
 
     get _inputReadOnly() {
+        console.log("inside _inputReadOnly", this._readonly, this.variant, this.hasInputPill);
+        
         return (
             this._readonly ||
             this.variant === VARIANT.STANDARD ||
@@ -625,6 +632,8 @@ export default class cBaseCombobox extends LightningElement {
         this.inputElement.focus();
 
         const selectedValue = optionElement.getAttribute('data-value');
+        console.log("selectedValue", selectedValue);
+        
         this._events.dispatchSelect(selectedValue);
     }
 

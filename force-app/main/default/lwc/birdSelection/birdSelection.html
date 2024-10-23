@@ -1,0 +1,86 @@
+<template>
+  <div class="grid-container">
+    <lightning-card title="Bird Selection" class="grid-item">
+      <div class="slds-p-around_small">
+        <c-searchable-combobox
+          label="Bird Category"
+          placeholder="Select a Bird Category"
+          options={categoryOptions}
+          onselection={handleCategoryChange}
+          onremoveselection={handleCategoryRemove}
+        ></c-searchable-combobox>
+        <c-searchable-combobox
+          label="Bird"
+          placeholder="Select a Bird"
+          options={birdOptions}
+          disabled={birdDisabled}
+          onselection={handleBirdChange}
+          onremoveselection={handleBirdRemove}
+        ></c-searchable-combobox>
+      </div>
+    </lightning-card>
+    <lightning-card title="Location Selection" class="grid-item">
+      <div class="slds-p-around_small">
+        <lightning-input-location
+          label="Coordinates"
+          latitude={selectedLatitude}
+          longitude={selectedLongitude}
+          field-level-help="Input coordinates with two decimals max. Make sure to use '-' as appropriate."
+          onchange={handleLocationChange}
+          required
+        >
+        </lightning-input-location>
+      </div>
+      <div class="slds-p-around_small">
+        <c-searchable-combobox
+          label="Country"
+          placeholder="Select a Country"
+          options={countryOptions}
+          onselection={handleCountryChange}
+          onremoveselection={handleCountryRemove}
+        ></c-searchable-combobox>
+      </div>
+      <div class="slds-p-around_small">
+        <c-searchable-combobox
+          label="City"
+          placeholder="Select a City"
+          options={cityOptions}
+          onselection={handleCityChange}
+          onremoveselection={handleCityRemove}
+        ></c-searchable-combobox>
+      </div>
+      <div class="slds-p-around_small">
+        <lightning-button
+          onclick={handleClick}
+          aria-haspopup="dialog"
+          label="Search"
+        >
+        </lightning-button>
+      </div>
+      <div lwc:if={noResultsMessage} class="slds-p-around_small">
+        There were no results for these search parameters.
+      </div>
+    </lightning-card>
+    <lightning-card title="Time and Distance Selection" class="grid-item">
+      <div class="slds-p-around_small">
+        <lightning-slider
+          label="Time (days back)"
+          min="1"
+          max="30"
+          value={selectedTime}
+        ></lightning-slider>
+      </div>
+
+      <div class="slds-p-around_small">
+        <lightning-slider
+          label="Search Radius (km)"
+          max="50"
+          value={selectedRadius}
+        ></lightning-slider>
+      </div>
+    </lightning-card>
+  </div>
+  <div class="slds-p-around_small">
+    <lightning-map map-markers={mapMarkers}></lightning-map>
+  </div>
+</template>

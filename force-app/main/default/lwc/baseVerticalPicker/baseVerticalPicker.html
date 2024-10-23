@@ -1,0 +1,46 @@
+<template>
+  <fieldset class="slds-form-element">
+    <legend class="slds-form-element__legend slds-form-element__label">
+      <!-- also could do a dynamic lwc for the header portion here-->
+      <slot name="header"> {headerLabel}</slot>
+    </legend>
+
+    <div class="slds-form-element__control">
+      <template for:each={_items} for:item="item">
+        <div key={item.key} class={computedVariant}>
+          <input
+            type={type}
+            id={item.key}
+            value={item.key}
+            name="example-unique-name-35"
+            onclick={handleClick}
+            disabled={item.disabled}
+            checked={item.checked}
+          />
+          <label for={item.key}>
+            <span
+              class="item slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center"
+            >
+              <lwc:component
+                lwc:is={selectionComp}
+                lwc:spread={item.params}
+              ></lwc:component>
+            </span>
+            <span
+              lwc:if={item.checked}
+              class="slds-icon_container slds-visual-picker__text-check"
+            >
+              <lightning-icon
+                icon-name="utility:check"
+                alternative-text="Checked"
+                size="x-small"
+                variant="inverse"
+                title="Checked"
+              ></lightning-icon>
+            </span>
+          </label>
+        </div>
+      </template>
+    </div>
+  </fieldset>
+</template>

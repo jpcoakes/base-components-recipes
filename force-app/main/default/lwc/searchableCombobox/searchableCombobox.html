@@ -1,0 +1,122 @@
+<template>
+  <div class="slds-form-element">
+    <label
+      class="slds-form-element__label"
+      for={combobox.labelforId}
+      id={combobox.labelId}
+      >{combobox.label}</label
+    >
+    <div class="slds-form-element__control">
+      <div class="slds-combobox_container">
+        <div
+          class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open"
+        >
+          <div
+            class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right"
+            role="none"
+          >
+            <input
+              type="text"
+              class="slds-input slds-combobox__input slds-combobox__input-value"
+              id={combobox.inputId}
+              aria-autocomplete="list"
+              aria-controls={combobox.controlsId}
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              autocomplete="off"
+              role="checkbox"
+              placeholder={combobox.placeholder}
+              value={value}
+              disabled={combobox.disabled}
+              oninput={handleInputChange}
+              onfocus={handleGainFocus}
+              onblur={handleLostFocus}
+              onclick={handleGainFocus}
+              onmouseover={handleInputHover}
+              onkeydown={handleKeyDown}
+            />
+            <span
+              data-role="search"
+              onmouseover={handleCloseButtonHover}
+              class="slds-icon_container slds-input__icon slds-input__icon_right input-icon-container"
+            >
+              <div lwc:if={combobox.closeMode}>
+                <lightning-button-icon
+                  tabindex="0"
+                  size="medium"
+                  variant="bare"
+                  icon-name="utility:clear"
+                  alternative-text="close"
+                  title="click to close"
+                >
+                </lightning-button-icon>
+              </div>
+              <div lwc:else>
+                <lightning-button-icon
+                  tabindex="-1"
+                  variant="bare"
+                  size="medium"
+                  icon-name="utility:search"
+                  alternative-text="search"
+                  title="Type to filter"
+                >
+                </lightning-button-icon>
+              </div>
+            </span>
+          </div>
+          <div
+            lwc:if={combobox.showSearchResults}
+            id="listbox-id-11"
+            class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid"
+            role="listbox"
+            onscroll={handleOptionScroll}
+            aria-label="Placeholder"
+            tabindex="0"
+            aria-busy="false"
+          >
+            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+              <template for:each={combobox.searchResults} for:item="option">
+                <li
+                  key={option.value}
+                  data-value={option.label}
+                  data-id={option.value}
+                  onclick={handleSelection}
+                  role="presentation"
+                  class="slds-listbox__item"
+                >
+                  <div
+                    onclick={handleOptionDivClick}
+                    onmouseenter={handleOptionMouseHover}
+                    onmouseleave={handleOptionMouseOut}
+                    id={option.label}
+                    class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                    role="option"
+                  >
+                    <span
+                      class="slds-media__figure slds-listbox__option-icon checked-icon"
+                    >
+                      <lightning-icon
+                        class="slds-current-color slds-hide"
+                        icon-name="utility:check"
+                        size="x-small"
+                        alternative-text="Selected"
+                      ></lightning-icon
+                    ></span>
+                    <span class="slds-media__body"
+                      ><span
+                        class="slds-truncate"
+                        data-value={option.value}
+                        title={option.label}
+                        >{option.label}</span
+                      ></span
+                    >
+                  </div>
+                </li>
+              </template>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

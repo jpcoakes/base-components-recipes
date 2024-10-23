@@ -21,3 +21,7 @@ force-app/test/**
 force-app/main/default/lwc/iconSvgTemplates/**
 force-app/main/default/lwc/testUtils/**
 force-app/main/default/lwc/testUtilsButtonGroup/**
+
+**/tsconfig.json
+
+**/*.ts
